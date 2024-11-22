@@ -1,8 +1,8 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
       <div class="container-fluid px-0">
-          <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/images/brand/logo/logo.svg') }}"
-                  alt="Geeks" /></a>
+          <a class="navbar-brand" href="{{ route('home') }}"><img
+                  src="{{ asset('storage/upload/images/brand/logo/logo.svg') }}" alt="Geeks" /></a>
           <!-- Mobile view nav wrap -->
           <div class="ms-auto d-flex align-items-center order-lg-3">
               <div class="dropdown me-2">
@@ -24,6 +24,13 @@
                               data-bs-theme-value="dark" aria-pressed="false">
                               <i class="bi theme-icon bi-moon-stars-fill"></i>
                               <span class="ms-2">Dark</span>
+                          </button>
+                      </li>
+                      <li>
+                          <button type="button" class="dropdown-item d-flex align-items-center active"
+                              data-bs-theme-value="auto" aria-pressed="true">
+                              <i class="bi theme-icon bi-circle-half"></i>
+                              <span class="ms-2">Auto</span>
                           </button>
                       </li>
                   </ul>
@@ -117,8 +124,9 @@
                                               <div class="col">
                                                   <a class="text-body" href="#">
                                                       <div class="d-flex">
-                                                          <img src="{{ asset('assets/images/avatar/avatar-3.jpg') }}"
-                                                              alt="" class="avatar-md rounded-circle" />
+                                                          <img src="{{ asset('storage/upload/images/avatar/avatar-3.jpg') }}"
+                                                              alt=""
+                                                              class="avatar-md rounded-circle img-uploaded" />
                                                           <div class="ms-3">
                                                               <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                               <p class="mb-3 text-body">Krisitn Watsan like your
@@ -189,8 +197,9 @@
                           <a class="rounded-circle" href="#" data-bs-toggle="dropdown"
                               data-bs-display="static" aria-expanded="false">
                               <div class="avatar avatar-md avatar-indicators avatar-online">
-                                  <img alt="avatar" src="{{ asset('assets/images/avatar/' . $userDetail->avatar) }}"
-                                      class="rounded-circle" />
+                                  <img alt="avatar"
+                                      src="{{ asset('storage/upload/images/avatar/' . $userDetail->avatar) }}"
+                                      class="rounded-circle img-uploaded" />
                               </div>
                           </a>
                           <div class="dropdown-menu dropdown-menu-end position-absolute mx-3 my-5">
@@ -286,34 +295,38 @@
           </div>
           <!-- Collapse -->
           <div class="collapse navbar-collapse" id="navbar-default" style="height:40px">
-            <ul class="navbar-nav mt-3 mt-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarBrowse" data-bs-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false" data-bs-display="static">Browse</a>
-                    <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarBrowse">
-                        @if (isset($courseCate))
-                            @foreach ($courseCate as $category)
-                                <li class="dropdown-submenu dropend">
-                                    <a class="dropdown-item dropdown-list-group-item"
-                                        href="{{ route('course-list') }}">{{ $category->name }}</a>
-                                </li>
-                            @endforeach
-                        @endif
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="{{ Auth::check() ? route('dashboard-user') : route('login') }}"
-                        id="navbarAccount">Dashboard</a>
-                </li>
-            </ul>
-            <form class="form-inline ms-lg-3 d-flex align-items-center">
-                <span class="position-absolute ps-3 search-icon">
-                    <i class="fe fe-search"></i>
-                </span>
-                <label for="search" class="visually-hidden"></label>
-                <input type="search" id="search" class="form-control ps-6" placeholder="Search Courses" />
-            </form>
-        </div>
-        
+              <ul class="navbar-nav mt-3 mt-lg-0">
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarBrowse" data-bs-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false" data-bs-display="static">Browse</a>
+                      <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarBrowse">
+                          @if (isset($courseCate))
+                              <li class="dropdown-submenu dropend">
+                                  <a class="dropdown-item dropdown-list-group-item"
+                                      href="{{ route('course-category', 0) }}">All courses</a>
+                              </li>
+                              @foreach ($courseCate as $category)
+                                  <li class="dropdown-submenu dropend">
+                                      <a class="dropdown-item dropdown-list-group-item"
+                                          href="{{ route('course-category', $category->id) }}">{{ $category->name }}</a>
+                                  </li>
+                              @endforeach
+                          @endif
+                      </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link" href="{{ Auth::check() ? route('dashboard-user') : route('login') }}"
+                          id="navbarAccount">Dashboard</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link" href="{{ route('blog-category') }}" id="navbarAccount">Blogs</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                      <a class="nav-link" href="{{ route('help') }}" id="navbarAccount">Help</a>
+                  </li>
+              </ul>
+
+          </div>
+
       </div>
   </nav>

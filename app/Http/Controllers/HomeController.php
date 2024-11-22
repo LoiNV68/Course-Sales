@@ -50,7 +50,7 @@ class HomeController
                 }
             }
         }
-
+   
 
         // Course Categories
         $courseCate = CourseCategoryModel::take(5)->get();
@@ -63,9 +63,8 @@ class HomeController
             ->take(10)
             ->get();
 
-        
 
-        // Courses Population
+     
         // Query to get top 10 courses by sale count
 
         $topCourses = CourseModel::select('course.id', 'course.name', 'course.title', 'course.level', 'course.image', 'course.price', 'course.instructor_id', DB::raw('COUNT(course_sale.student_id) as total_sales'))
@@ -87,10 +86,8 @@ class HomeController
 
 
 
-        // foreach ($topCourses as $course) {
-        //     dd($course->instructor->firstname);
-        // }
-
+    
+    
 
         View::share([
             'user' => $user,
